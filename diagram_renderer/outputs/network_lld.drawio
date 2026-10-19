@@ -1,0 +1,112 @@
+<mxfile host="network-design-copilot" modified="2026-08-14T12:42:08.000Z" version="24.0.0">
+<diagram id="lld-diagram" name="Network LLD">
+<mxGraphModel dx="1024" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="core-sw-01" value="Core Switch 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="40" y="160" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="core-sw-02" value="Core Switch 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="240" y="160" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="dist-sw-01" value="Distribution Switch 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="40" y="300" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="dist-sw-02" value="Distribution Switch 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="240" y="300" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-01" value="Access Switch 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="40" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-02" value="Access Switch 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="240" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-03" value="Access Switch 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="440" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-04" value="Access Switch 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="640" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-05" value="Access Switch 5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="840" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-06" value="Access Switch 6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="1040" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-07" value="Access Switch 7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="1240" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-08" value="Access Switch 8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="1440" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-09" value="Access Switch 9" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="1640" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-10" value="Access Switch 10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="1840" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-11" value="Access Switch 11" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="2040" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="access-sw-12" value="Access Switch 12" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="2240" y="440" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="edge-0" value="10G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="core-sw-01" target="dist-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-1" value="10G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="core-sw-02" target="dist-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-2" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dist-sw-01" target="access-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-3" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dist-sw-02" target="access-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-4" value="10G link" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="dist-sw-02" target="core-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-5" value="10G link" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="dist-sw-01" target="core-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-6" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-01" target="dist-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-7" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-02" target="dist-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-8" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-03" target="dist-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-9" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-04" target="dist-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-10" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-05" target="dist-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-11" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-06" target="dist-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-12" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-07" target="dist-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-13" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-08" target="dist-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-14" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-09" target="dist-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-15" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-10" target="dist-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-16" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-11" target="dist-sw-01">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-17" value="1G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="access-sw-12" target="dist-sw-02">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>

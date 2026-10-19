@@ -1,0 +1,25 @@
+<mxfile host="network-design-copilot" modified="2026-08-12T06:44:35.000Z" version="24.0.0">
+<diagram id="lld-diagram" name="Sample LLD">
+<mxGraphModel dx="1024" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="fw-1" value="Perimeter Firewall FW1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="40" y="40" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="core-1" value="Core Switch CORE1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="40" y="40" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="dist-1" value="Distribution Switch DIST1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+  <mxGeometry x="40" y="220" width="140" height="60" as="geometry"/>
+</mxCell>
+<mxCell id="edge-0" value="1G WAN" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;" edge="1" parent="1" source="fw-1" target="core-1">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+<mxCell id="edge-1" value="10G uplink" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jettySize=auto;" edge="1" parent="1" source="core-1" target="dist-1">
+  <mxGeometry relative="1" as="geometry"/>
+</mxCell>
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>
