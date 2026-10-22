@@ -14,16 +14,18 @@ Assets: network devices (config integrity), Anthropic API key and spend, the ARG
 ## Findings
 | ID | Finding | Severity | Status |
 |----|---------|----------|--------|
-| F1 | Streamlit UI unauthenticated, bound 0.0.0.0:8501 | High | OPEN - restrict with ufw to your admin IP / SSH tunnel / auth proxy |
+| F1 | Streamlit UI unauthenticated, bound 0.0.0.0:8501 | High | MITIGATED - ufw allows 8501 from the LAN subnet only; see F12 |
 | F2 | Config injection via newline in extracted strings (proven against original code: live `username`, `enable secret`, `line vty`, hijacked `ip route`) | Critical | FIXED - 3 layers (field allowlists, render sanitizers, line-allowlist lint) |
 | F3 | Placeholder secrets (`AUTH_PASSWORD`), `<x-ip>`, `interfaceUNSPECIFIED-N`, default SNMP `public` in drafts | High | MITIGATED - `assert_pushable()` blocks; must be wired into `PushSession.stage()` in push phase |
 | F4 | Prompt injection can still skew data-level values (VLAN IDs, IPs) | Medium | RESIDUAL - delimiters + data-only instruction; real controls: validators, human diff review, push allowlist; planned provenance check |
 | F5 | Retry loop echoes validator error (attacker text) back to LLM | Low | FIXED - printable ASCII, 500 chars |
-| F6 | draw.io XML / HTML label escaping, Streamlit unsafe_allow_html | Medium | PARTIAL - diagram ids/labels hardened at schema; render.py and app.py still to be reviewed |
+| F6 | draw.io XML / HTML label escaping, Streamlit unsafe_allow_html | Medium | MOSTLY FIXED - render.py escapes & < > " correctly; labels are HTML in draw.io (html=1) so the schema strips markup characters; ids are strict. app.py unsafe_allow_html still to be reviewed |
 | F7 | Secrets in repo | High | FIXED - .env ignored, history rewritten, no key ever pushed |
 | F8 | Non-ASCII in generated config | Low | FIXED - ASCII only, lint enforced |
 | F9 | Push needs least privilege | High | PLANNED (below) |
 | F10 | Upload size/type limits, API spend | Medium | OPEN - set `--server.maxUploadSize`, API key spend limit |
+| F11 | Review agent looped to the recursion limit on odd input (message history was overwritten each pass, so the model never saw tool results); raw error shown | Medium (reliability) | FIXED - add_messages reducer, 3-round tool cap, friendly failure message, design text wrapped as untrusted data |
+| F12 | UI reachable by anyone on the LAN, no login (firewall allows 192.168.1.0/24 only on 8501) | Medium | ACCEPTED for the lab - revisit with auth proxy or app login before wider use |
 
 ## Controls
 Reject-not-repair validators for security failures; auto-repair-with-warning only for benign gaps.
