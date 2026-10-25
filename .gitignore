@@ -10,3 +10,8 @@ test_config_output/
 config_generator.bak/
 diagram_renderer.bak/
 test_config_output/
+*.bak*
+*.pre_*
+*.bak2/
+config_generator.bak2/
+security_reviewer.bak2/
