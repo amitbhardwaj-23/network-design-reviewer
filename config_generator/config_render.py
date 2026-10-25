@@ -216,6 +216,8 @@ def render_all_configs_with_warnings(diagram_spec, config_spec: ConfigSpec) -> t
     warnings: list = []
     configs = {}
     for device in diagram_spec.devices:
+        if getattr(device, "type", None) == "cloud":
+            continue        # ISPs / cloud are not devices we configure
         configs[device.id] = render_device_config(
             device.id, device.label, config_spec, topology_devices, counters, warnings
         )

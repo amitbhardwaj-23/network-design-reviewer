@@ -30,6 +30,7 @@ from config_schema import ConfigSpec
 from config_validate import validate_config_spec
 from config_prompts import build_config_extraction_prompt
 from config_render import render_all_configs, write_configs_to_dir
+from config_provenance import drop_unsupported_values
 
 load_dotenv()
 
@@ -84,15 +85,19 @@ def generate_configs_for_lld(lld_text: str, kb_context: str = "") -> dict:
         }
 
     config_spec: ConfigSpec = config_result["spec"]
+    config_spec, provenance_warnings = drop_unsupported_values(config_spec, lld_text)
     configs = render_all_configs(diagram_spec, config_spec)
     config_paths = write_configs_to_dir(configs, output_dir=os.getenv("CONFIG_OUTPUT_DIR", "outputs/configs"))
 
-    all_warnings = topology_warnings + config_result.get("warnings", [])
+    all_warnings = topology_warnings + config_result.get("warnings", []) + provenance_warnings
 
     return {
         "failed": False,
         "last_error": None,
         "warnings": all_warnings,
+        "diagram_spec": diagram_spec,
+        "config_spec": config_spec,
+        "configs": configs,
         "diagram_output_path": topology_result.get("output_path"),
         "config_paths": config_paths,
     }
