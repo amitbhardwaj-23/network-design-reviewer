@@ -11,6 +11,7 @@ from retriever import kb_status, seed_standards
 from diagram_renderer.graph import render_lld_to_diagram
 from visual_reviewer.visual_graph import review_diagram_image
 from config_generator.config_graph import generate_configs_for_lld
+from security_reviewer.security_rules import run_security_review, to_markdown, risk_rating, SEVERITIES, topology_markdown
 import zipfile
 import io
 
@@ -160,6 +161,46 @@ if st.session_state.get("report"):
                             device_name = path.split("/")[-1].replace(".cfg", "")
                             with open(path, "r") as f:
                                 st.text_area(device_name, f.read(), height=150, key=f"cfg_preview_{device_name}")
+            st.divider()
+            if st.button("Run Security Review", use_container_width=True):
+                _dr = st.session_state.get("diagram_result")
+                _cr = st.session_state.get("config_result")
+                _cfg_ok = bool(_cr) and not _cr.get("failed") and _cr.get("config_spec") is not None
+                _diag = (_cr or {}).get("diagram_spec") if _cfg_ok else None
+                if _diag is None and _dr and not _dr.get("failed"):
+                    _diag = _dr.get("spec")
+                if _diag is None:
+                    st.session_state["security_review"] = None
+                    st.warning("Run Render Diagram or Generate Device Configs first - the security review needs the extracted topology.")
+                else:
+                    try:
+                        st.session_state["security_review"] = {
+                            "findings": run_security_review(
+                                _diag,
+                                _cr.get("config_spec") if _cfg_ok else None,
+                                _cr.get("configs") if _cfg_ok else None,
+                                lld_text=st.session_state.get("design_text") or ""),
+                            "with_configs": _cfg_ok,
+                            "topology": topology_markdown(_diag),
+                        }
+                    except Exception as _e:
+                        st.session_state["security_review"] = None
+                        st.error(f"Security review failed ({type(_e).__name__}). The design data may be incomplete.")
+            _sr = st.session_state.get("security_review")
+            if _sr:
+                _f = _sr["findings"]
+                _counts = {s: sum(1 for x in _f if x.severity == s) for s in SEVERITIES}
+                st.markdown(f"**Security posture: {risk_rating(_f)}**  \n" +
+                            " | ".join(f"{s}: {n}" for s, n in _counts.items()))
+                if not _sr["with_configs"]:
+                    st.caption("Topology-only review. Run Generate Device Configs first to include config-level checks.")
+                st.markdown(to_markdown(_f))
+                with st.expander("Topology the reviewer saw - check it against your LLD", expanded=True):
+                    st.markdown(_sr.get("topology", ""))
+                st.download_button("Download Security Review (.md)", data=to_markdown(_f) + "\n\n" + _sr.get("topology", ""),
+                                   file_name="security_review.md", mime="text/markdown",
+                                   use_container_width=True)
+
         else:
             st.caption("Diagram rendering and config generation currently support pasted text or .md/.txt uploads (.docx not yet supported).")
 
