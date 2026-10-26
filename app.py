@@ -14,6 +14,7 @@ from config_generator.config_graph import generate_configs_for_lld
 from security_reviewer.security_rules import run_security_review, to_markdown, risk_rating, SEVERITIES, topology_markdown
 import zipfile
 import io
+from full_run import run_remaining_steps
 
 st.set_page_config(page_title="Network Design Reviewer", page_icon="[REVIEW]", layout="wide")
 st.title("Network Design Reviewer")
@@ -51,6 +52,9 @@ with col1:
     run = st.button("Run Review", type="primary",
                     disabled=(not uploaded and not pasted.strip()),
                     use_container_width=True)
+    run_all = st.button("Run Full Review (report + diagram + configs + security)",
+                        disabled=(not uploaded and not pasted.strip()),
+                        use_container_width=True)
     with st.expander("Load sample design for demo"):
         st.caption("Paste this into the text area above to test the reviewer:")
         st.code(Path("sample_designs/campus_hld_sample.md").read_text()
@@ -61,7 +65,7 @@ with col2:
     st.subheader("Review Report")
     placeholder = st.empty()
 
-if run:
+if run or run_all:
     if uploaded:
         suffix = Path(uploaded.name).suffix
         with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
@@ -97,6 +101,27 @@ if run:
     if report:
         st.session_state["report"] = report
         st.session_state["design_text"] = design_text
+
+    if run_all:
+        if not report:
+            st.session_state["report"] = "_The review report failed (see the error above). The other steps were still run._"
+            st.session_state["design_text"] = design_text
+        if design_text:
+            with col2:
+                _full = st.status("Running configs, diagram and security review...", expanded=True)
+                with _full:
+                    _res = run_remaining_steps(design_text, render_lld_to_diagram,
+                                               generate_configs_for_lld, run_security_review, log=st.write)
+                    for _e in _res["errors"]:
+                        st.write(_e)
+                for _k, _v in _res["state"].items():
+                    st.session_state[_k] = _v
+                _bad = [k for k, v in _res["steps"].items() if v != "ok"]
+                _full.update(label="Full review complete" if not _bad
+                             else "Full review finished with problems in: " + ", ".join(_bad),
+                             state="complete" if not _bad else "error")
+        else:
+            st.warning("Run Full Review needs a .md or .txt file, or pasted text (a .docx cannot be read for the diagram and configs).")
 
 if st.session_state.get("report"):
     with col2:
